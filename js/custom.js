@@ -47,19 +47,18 @@ $(document).ready(function(){
 		});
 	});
 
-	$("#btn-edit").click(function(){
+	$(document).on('click', "#btn-edit", function(){
 		$("#btn-edit").html('Aguarde...');
 		var data = $("#edit-form").serialize();
 		$.ajax({
 			type : 'POST',
 			url  : 'actionsql.php',
 			data : data,
-			dataType: '',
+			dataType: 'json',
 			success :  function(response){
-				alert(response);
 				$("#btn-insert").html('Entrar');
 				$("#form-alert").css('display', 'block')
-				$("#dados-usuarios").html('<div class="alert alert-success" role="alert"><strong>Sucesso! </strong>' + response.mensagem + '</div>');
+				$("#dados-usuarios").html('<div class="alert alert-success" role="alert">' + response.mensagem + '</div>');
 		    }
 		});
 	});
