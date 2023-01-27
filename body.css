@@ -35,6 +35,9 @@ form input {
     padding: 10px 25px;
     width: 50%;
 }
-#login-alert{
+#login-alert, #form-alert, #form-sucess{
     display: none;
+}
+table {
+    font-size: 10px;
 }

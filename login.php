@@ -19,20 +19,9 @@ require 'menu.php';
                         <button type="button" class="btn btn-primary" name="btn-login" id="btn-login">
                                 Entrar
                         </button>
-                    </div>      
+                        <p><a href="inserir-usuario.php">Inserir usuário</a> | <a href="editar-usuario.php">Editar usuários</a></p>
+                    </div>
                 </form>
-                <p> Lista de usuários </p>
-            <?php
-                require_once __DIR__ .'/database/Connect.php';
-                $connect = Connect::getInstance();
-                $read = $connect->query("SELECT * FROM users");
-                foreach($read->fetchAll() as $user){
-                    echo "<p>Nome: " . $user->first_name . " " . $user->last_name . "</p>";
-                    echo "<p> usuario: " . $user->username . "</p>";
-                }
-            ?>
-
-
             </div>
             <div class="caixa2 col-6">
                 <img src="https://png.pngtree.com/png-vector/20190919/ourlarge/pngtree-user-login-or-authenticate-icon-on-gray-background-flat-icon-ve-png-image_1742031.jpg">

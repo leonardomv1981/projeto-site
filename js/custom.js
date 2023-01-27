@@ -13,7 +13,6 @@ $(document).ready(function(){
 			data : data,
 			dataType: 'json',
 			success :  function(response){	
-				
 				if (response.codigo) {	
 					window.location.href = "home.php";
 				} else {								
@@ -21,6 +20,61 @@ $(document).ready(function(){
 					$("#login-alert").css('display', 'block')
 					$("#mensagem").html('<strong>Erro! </strong>' + response.mensagem);
 				}
+		    }
+		});
+	});
+
+	$("#btn-insert").click(function(){
+		
+		$("#btn-insert").html('Aguarde...');
+		var data = $("#insert-form").serialize();
+		$.ajax({
+			type : 'POST',
+			url  : 'actionsql.php',
+			data : data,
+			dataType: 'json',
+			success :  function(response){	
+				if (response.codigo == 0) {	
+					$("#btn-insert").html('Entrar');
+					$("#form-alert").css('display', 'block')
+					$("#mensagem").html('<div class="alert alert-danger" role="alert"><strong>Erro! </strong>' + response.mensagem + '</div>');
+				} else {							
+					$("#btn-insert").html('Entrar');
+					$("#form-alert").css('display', 'block')
+					$("#mensagem").html('<div class="alert alert-success" role="alert">' + response.mensagem + '</div>');
+				}
+		    }
+		});
+	});
+
+	$("#btn-edit").click(function(){
+		$("#btn-edit").html('Aguarde...');
+		var data = $("#edit-form").serialize();
+		$.ajax({
+			type : 'POST',
+			url  : 'actionsql.php',
+			data : data,
+			dataType: '',
+			success :  function(response){
+				alert(response);
+				$("#btn-insert").html('Entrar');
+				$("#form-alert").css('display', 'block')
+				$("#dados-usuarios").html('<div class="alert alert-success" role="alert"><strong>Sucesso! </strong>' + response.mensagem + '</div>');
+		    }
+		});
+	});
+
+	$(document).on('click', ".btn-editar", function(){
+		$("btn-editar").html('...');
+		var objeto = $(this).data();
+		$.ajax({
+			type : 'POST',
+			url  : 'action-editarsql.php',
+			data: {id: objeto.param.id},
+			dataType: '',
+			success :  function(response){
+				$("#dados-usuarios").html(response);
+				$("#btn-editar").html('carregar mais');
 		    }
 		});
 	});
@@ -46,7 +100,6 @@ $(document).ready(function(){
 		});
 	});
 
-	//$(".modal-button").live.click(function(){
 	$(document).on('click', ".modal-button", function(){
 		let objeto = $(this).data();
 		$("#modal-button").html('aguarde...');

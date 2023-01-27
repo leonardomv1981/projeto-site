@@ -5,7 +5,7 @@ class Connect
     private const HOST = "localhost";
     private const USER = "root";
     private const DBNAME = "leonardovilela";
-    private const PASSWD = "BotleD02";
+    private const PASSWD = "";
 
     private const OPTIONS = [
         PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
